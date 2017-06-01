@@ -165,16 +165,16 @@ VK.init({
 //load album list
 loadAlbumsList.addEventListener('click', function () {
 	var profileID = document.querySelector('.js--profileId-fild').value;
-	if(document.querySelector('#mCSB_1_container') == null){
-		alubmListWrap.innerHTML = '';
-	}else{
-		document.querySelector('#mCSB_1_container').innerHTML = ''
-	}
-	VK.Auth.login(function (result) {
-
-		if (result.status == 'connected') {
-			console.info('Успешная авторизация');
 			if(isNumeric(profileID)){
+	VK.Auth.login(function (result) {
+		if (result.status == 'connected') {
+
+			if(document.querySelector('#mCSB_1_container') == null){
+				alubmListWrap.innerHTML = '';
+			}else{
+				document.querySelector('#mCSB_1_container').innerHTML = ''
+			}
+			console.info('Успешная авторизация');
 			VK.api('photos.getAlbums', {
 				v: 5.63,
 				owner_id: profileID,
@@ -231,13 +231,13 @@ loadAlbumsList.addEventListener('click', function () {
 					});
 					
 			});
-			}else{
-				alert('ProfileID состоит только из числа!')
-			}
 		} else {
 			console.error("Не успешная авторизация");
 		}
 	}, 4);
+			}else{
+				alert('ProfileID состоит только из числа!')
+			}
 	
 });
 
