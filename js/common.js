@@ -174,7 +174,7 @@ loadAlbumsList.addEventListener('click', function () {
 
 		if (result.status == 'connected') {
 			console.info('Успешная авторизация');
-
+			if(isNumeric(profileID)){
 			VK.api('photos.getAlbums', {
 				v: 5.63,
 				owner_id: profileID,
@@ -231,11 +231,14 @@ loadAlbumsList.addEventListener('click', function () {
 					});
 					
 			});
-
+			}else{
+				alert('ProfileID состоит только из числа!')
+			}
 		} else {
 			console.error("Не успешная авторизация");
 		}
 	}, 4);
+	
 });
 
 
@@ -332,7 +335,9 @@ alubmListWrap.addEventListener('click', function (e) {
 	}
 });
 
-
+function isNumeric(n) {
+  return !isNaN(parseFloat(n)) && isFinite(n);
+}
 
 //animation modal
 
